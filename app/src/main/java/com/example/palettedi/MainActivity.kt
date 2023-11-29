@@ -31,14 +31,12 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "Sitios") {
                         composable("Sitios") { Sitios(navController) }
                         composable(
-                            route = "Ampliacion/{textoContacto}/{imagenContacto}",
+                            route = "Ampliacion/{imagenContacto}",
                             arguments = listOf(
-                                navArgument("textoContacto") { type = NavType.StringType },
                                 navArgument("imagenContacto") { type = NavType.IntType }
                             )
                         ) { backStackEntry ->
                             Ammpliacion(
-                                backStackEntry.arguments?.getString("textoContacto") ?: "",
                                 backStackEntry.arguments?.getInt("imagenContacto") ?: 0,
                                 navController
                             )

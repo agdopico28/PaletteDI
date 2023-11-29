@@ -1,6 +1,7 @@
 package com.example.palettedi
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -31,6 +32,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,12 +44,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.palette.graphics.Palette
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -125,7 +129,7 @@ fun ItemCard(cardData: CardData, navHostController: NavHostController) {
         Modifier
             .fillMaxSize()
 
-            .clickable { navHostController.navigate("Ampliacion/${cardData.name}/${cardData.photo}") },
+            .clickable { navHostController.navigate("Ampliacion/${cardData.photo}") },
         //elevation = CardDefaults.cardElevation(10.dp)
     )
     {
@@ -171,3 +175,4 @@ fun ItemCard(cardData: CardData, navHostController: NavHostController) {
 
 
 }
+
