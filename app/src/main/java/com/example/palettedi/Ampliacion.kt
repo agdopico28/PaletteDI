@@ -85,63 +85,70 @@ fun Ammpliacion(
     //Cambia el color de la barra de arriba del todo
     val view = LocalView.current
     val window = (view.context as Activity).window
-    window.statusBarColor = (darkVibrantSwatch?.let { Color(it.rgb).toArgb() } ?: Color.Red.toArgb())
+    window.statusBarColor =
+        (darkVibrantSwatch?.let { Color(it.rgb).toArgb() } ?: Color.Red.toArgb())
 
     var isMenuVisible by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(//barra de menu parte superior de la pantalla
-            title = {
-                Text(text = "Palette",  color = vibrantSwatch?.let { Color(it.titleTextColor) } ?: Color.Red, fontSize = 20.sp) //nombre que aparece en la barra
-            },
-            navigationIcon = {
-                IconButton(
-                    onClick = {
-                    }
-                ) {
-                    Icon(//Icono de las tres barras horizontales
-                        imageVector = Icons.Default.Menu,
-                        contentDescription = null,
-                        tint = Color.White
-                    )
-                }
-            },
-            actions = {
-                Row (){
-                    IconButton( //Icono de los tres puntos que cuando clicas aparece el dropdownMenu
+                title = {
+                    Text(
+                        text = "Palette",
+                        color = vibrantSwatch?.let { Color(it.titleTextColor) } ?: Color.Red,
+                        fontSize = 20.sp) //nombre que aparece en la barra
+                },
+                navigationIcon = {
+                    IconButton(
                         onClick = {
-                            isMenuVisible = true
                         }
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.MoreVert,
+                        Icon(//Icono de las tres barras horizontales
+                            imageVector = Icons.Default.Menu,
                             contentDescription = null,
                             tint = Color.White
                         )
                     }
-                }
-            },
-            colors = TopAppBarDefaults.mediumTopAppBarColors(
-                vibrantSwatch?.let { Color(it.rgb) } ?: Color.Transparent
+                },
+                actions = {
+                    Row() {
+                        IconButton( //Icono de los tres puntos que cuando clicas aparece el dropdownMenu
+                            onClick = {
+                                isMenuVisible = true
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.MoreVert,
+                                contentDescription = null,
+                                tint = Color.White
+                            )
+                        }
+                    }
+                },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    vibrantSwatch?.let { Color(it.rgb) } ?: Color.Transparent
+                )
             )
-        ) }
+        }
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(top = it.calculateTopPadding())
 //                .padding(top = it.calculateTopPadding()),
 //            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Foto (puedes agregar aquí el código para mostrar la foto)
 
-                Image(
-                    painter = painterResource(id = navControllerImagen),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxWidth().height(370.dp)
-                )
 
+            Image(
+                painter = painterResource(id = navControllerImagen),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(370.dp)
+            )
 
 
             // Mostrar filas con colores
@@ -156,7 +163,6 @@ fun Ammpliacion(
 }
 
 
-
 @Composable
 fun ColorRow(name: String, color: Palette.Swatch?) {
     Row(
@@ -167,7 +173,9 @@ fun ColorRow(name: String, color: Palette.Swatch?) {
         Text(
             text = name,
             fontSize = 16.sp,
-            modifier = Modifier.weight(1f).background(color?.rgb?.let { Color(it) } ?: Color.Transparent)
+            modifier = Modifier
+                .weight(1f)
+                .background(color?.rgb?.let { Color(it) } ?: Color.Transparent)
         )
 
     }
