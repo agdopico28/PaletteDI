@@ -42,11 +42,11 @@ class MainActivity : ComponentActivity() {
                             ),
 
                             enterTransition = {
-//                                slideIntoContainer(
-//                                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Up,
-//                                    animationSpec = tween(700)
-//                                )
-                                fadeIn(animationSpec = tween(900))
+                                slideIntoContainer(
+                                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Up,
+                                    animationSpec = tween(700)
+                                )
+//                                fadeIn(animationSpec = tween(900))
                             },
                             exitTransition = {
                                 fadeOut(animationSpec = tween(900))
